@@ -1,25 +1,10 @@
 require "date"
 
 class Todo
-  def initialize(payment_reason, due_date, isPaid)
-    @payment_reason = payment_reason #reason for payment
+  def initialize(text, due_date, completed)
+    @text = text #reason for payment
     @due_date = due_date #payment date
-    @isPaid = isPaid #whether is paid or not
-  end
-
-  #getter for isPaid
-  def get_isPaid
-    @isPaid
-  end
-
-  #getter for payment reason
-  def get_payment_reason
-    @payment_reason
-  end
-
-  #getter for due date
-  def get_due_date
-    @due_date
+    @completed = completed #whether is paid or not
   end
 
   #check current obj due date is overdued
@@ -39,7 +24,9 @@ class Todo
 
   #to display the value
   def to_displayable_string
-    "[#{(get_isPaid) ? "X" : " "}] #{get_payment_reason} #{(get_due_date if get_due_date != Date.today)}"
+    display_status = (@completed) ? "X" : " "
+    display_date = (@due_date if @due_date != Date.today)
+    "[#{display_status}] #{@text} #{display_date}"
   end
 end
 
